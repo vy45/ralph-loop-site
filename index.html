@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ralph Loop — A Practical Guide</title>
+    <meta
+      name="description"
+      content="A practical, thoughtful introduction to the Ralph Loop: what it is, why it works, and how to apply it in real projects."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">AI Engineering Pattern</p>
+        <h1>Understanding the Ralph Loop</h1>
+        <p class="lead">
+          The Ralph Loop is an iterative workflow for AI agents: run a focused task,
+          verify results, save state outside the model, then restart with fresh context.
+          The power comes from repetition + feedback, not a single perfect prompt.
+        </p>
+        <nav>
+          <a href="#what-is">What is Ralph Loop</a>
+          <a href="#philosophy">Core Philosophy</a>
+          <a href="#how-it-works">How the loop works</a>
+          <a href="#examples">Practical examples</a>
+          <a href="#meta-comment">Meta Comment</a>
+          <a href="#my-thoughts">My Thoughts & How to Implement This in Project Building</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="what-is" class="card">
+        <h2>What is Ralph Loop</h2>
+        <p>
+          Ralph Loop is a lightweight orchestration pattern (often a shell loop) used to run
+          an AI coding agent repeatedly against a clear task list. Instead of keeping one
+          very long conversation, each iteration starts fresh and reads project state from
+          files, tests, and version control.
+        </p>
+        <p>
+          In simple terms: <strong>attempt → check → record → restart</strong>.
+          This helps control drift and keeps work grounded in verifiable artifacts.
+        </p>
+      </section>
+
+      <section id="philosophy" class="card">
+        <h2>Core Philosophy</h2>
+        <ul>
+          <li><strong>Fresh context beats bloated context.</strong> New runs avoid conversation fatigue and context rot.</li>
+          <li><strong>External memory wins.</strong> Reliable state lives in files, tests, and git—not in transient chat memory.</li>
+          <li><strong>Small tasks compound.</strong> One clear task per loop creates steady momentum and cleaner quality control.</li>
+          <li><strong>Feedback is non-negotiable.</strong> Tests and checks are the steering wheel of the loop.</li>
+          <li><strong>Engineer as orchestrator.</strong> Humans focus on goals, constraints, and review, while loops handle repetition.</li>
+        </ul>
+      </section>
+
+      <section id="how-it-works" class="card">
+        <h2>How the loop works</h2>
+        <ol>
+          <li><strong>Pick one unfinished task</strong> with a clear definition of done.</li>
+          <li><strong>Run the agent</strong> on that task only.</li>
+          <li><strong>Execute checks</strong> (tests, lint, type-check, manual validation where needed).</li>
+          <li><strong>Persist outcomes</strong> (commit changes, update task/progress docs, write lessons learned).</li>
+          <li><strong>Start a fresh iteration</strong> so the next run begins clean but informed by artifacts.</li>
+        </ol>
+        <div class="callout">
+          <p>
+            Key idea: the loop is deterministic in structure, but adaptable in outcomes. It harnesses
+            non-deterministic model behavior through repeated, test-gated attempts.
+          </p>
+        </div>
+      </section>
+
+      <section id="examples" class="card">
+        <h2>Practical examples</h2>
+        <h3>Example 1: Feature delivery</h3>
+        <p>
+          Break “build user dashboard” into micro-tasks: fetch endpoint, card component,
+          loading/error states, accessibility pass, tests. Loop through tasks one by one,
+          committing only when checks pass.
+        </p>
+
+        <h3>Example 2: Bug fixing</h3>
+        <p>
+          Ask the loop to reproduce bug → write failing test → implement fix → run regression suite.
+          If tests fail, next iteration continues from saved artifacts, not from memory.
+        </p>
+
+        <h3>Example 3: Refactoring with guardrails</h3>
+        <p>
+          Loop over module-by-module cleanup. Each pass must preserve behavior via tests and
+          snapshots. Over time, quality improves without risky “big bang” rewrites.
+        </p>
+      </section>
+
+      <section id="meta-comment" class="card meta">
+        <h2>Meta Comment</h2>
+        <p>
+          Explaining Ralph Loop is slightly ironic: the concept argues for short, focused cycles,
+          while explanations usually become broad and abstract. To stay faithful to the philosophy,
+          this page intentionally keeps the narrative practical and modular. Even this explanation
+          is structured like a loop: define, test with examples, refine into actionable guidance.
+        </p>
+      </section>
+
+      <section id="my-thoughts" class="card">
+        <h2>My Thoughts & How to Implement This in Project Building</h2>
+        <p>
+          Ralph Loop is most useful when you treat it as an engineering discipline, not a magic button.
+          It works best in projects where quality gates are clear and tasks are well-scoped.
+        </p>
+        <h3>Actionable implementation plan</h3>
+        <ul>
+          <li><strong>1) Define a task ledger:</strong> Keep a checklist with one-line acceptance criteria per task.</li>
+          <li><strong>2) Create quality gates:</strong> Decide mandatory checks (tests/lint/type-check/build) before any task is closed.</li>
+          <li><strong>3) Standardize project memory:</strong> Maintain AGENTS.md or similar docs for conventions and repeated learnings.</li>
+          <li><strong>4) Keep loops short:</strong> Favor 10 small loops over one giant loop. Small loops are easier to inspect and debug.</li>
+          <li><strong>5) Add human review points:</strong> Pause after key milestones to confirm architecture direction and product fit.</li>
+          <li><strong>6) Measure outcomes:</strong> Track cycle time, pass rate, rework rate, and defect escape to validate real improvement.</li>
+        </ul>
+        <p>
+          In project building, this approach reduces chaos. You get progress that is visible,
+          verifiable, and easier to hand off across teammates.
+        </p>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <p>Built as a GitHub Pages-ready static site.</p>
+    </footer>
+  </body>
+</html>
