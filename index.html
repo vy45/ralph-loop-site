@@ -1,66 +1,94 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="blend">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ralph Loop — Practical Systems Thinking for AI Work</title>
     <meta
       name="description"
-      content="A modern, practical guide to the Ralph Loop: what it is, core philosophy, workflow, examples, and implementation guidance for real projects."
+      content="A visually rich, modern guide to the Ralph Loop: philosophy, workflow, examples, and implementation guidance for real AI projects."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="bg-orb orb-1" aria-hidden="true"></div>
-    <div class="bg-orb orb-2" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
 
     <header class="hero" id="top">
-      <div class="container hero-wrap">
-        <div class="hero-copy">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=2000&q=80"
+      >
+        <source
+          src="https://cdn.coverr.co/videos/coverr-vast-galaxy-5174/1080p.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-shell reveal">
+        <div class="hero-topbar">
           <p class="eyebrow">AI Engineering Pattern</p>
-          <h1>Understanding the Ralph Loop</h1>
-          <p class="lead">
-            The Ralph Loop is an iterative workflow for AI agents: run a focused task,
-            verify results, save state outside the model, then restart with fresh context.
-            The power comes from repetition + feedback, not one giant prompt.
-          </p>
-
-          <div class="hero-chips">
-            <span>Fast iterations</span>
-            <span>External memory</span>
-            <span>Test-gated output</span>
+          <div class="theme-switch" role="tablist" aria-label="Visual style variants">
+            <button data-theme-btn="variant-a" aria-label="Switch to Aurora Glass style">Variant A · Aurora Glass</button>
+            <button data-theme-btn="variant-b" aria-label="Switch to Bold Editorial style">Variant B · Bold Editorial</button>
+            <button class="active" data-theme-btn="blend" aria-label="Switch to Final blend style">Final Blend</button>
           </div>
-
-          <nav class="quick-nav" aria-label="Section navigation">
-            <a href="#what-is">What is Ralph Loop</a>
-            <a href="#philosophy">Core Philosophy</a>
-            <a href="#how-it-works">How it works</a>
-            <a href="#examples">Practical examples</a>
-            <a href="#meta-comment">Meta Comment</a>
-            <a href="#my-thoughts">My Thoughts & implementation guidance</a>
-          </nav>
         </div>
 
-        <aside class="hero-panel" aria-label="Ralph Loop at a glance">
-          <h2>Loop Pattern</h2>
-          <ol>
-            <li>Pick one task</li>
-            <li>Run the agent</li>
-            <li>Execute checks</li>
-            <li>Persist outcomes</li>
-            <li>Restart clean</li>
-          </ol>
-          <p>
-            A stable structure with adaptable outcomes — designed to turn model variability into
-            reliable engineering progress.
-          </p>
-        </aside>
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <h1>Understanding the Ralph Loop</h1>
+            <p class="lead">
+              A reliable way to ship with AI agents: run focused tasks, verify output,
+              persist state externally, and restart fresh. Progress comes from
+              <strong>tight cycles + hard feedback</strong>, not giant prompts.
+            </p>
+
+            <div class="hero-chips">
+              <span>Fast iterations</span>
+              <span>External memory</span>
+              <span>Test-gated output</span>
+            </div>
+
+            <div class="hero-cta-row">
+              <a class="btn btn-primary" href="#how-it-works">See the workflow</a>
+              <a class="btn btn-ghost" href="#my-thoughts">Implementation guide</a>
+            </div>
+
+            <nav class="quick-nav" aria-label="Section navigation">
+              <a href="#what-is">What is Ralph Loop</a>
+              <a href="#philosophy">Core Philosophy</a>
+              <a href="#how-it-works">How it works</a>
+              <a href="#examples">Practical examples</a>
+            </nav>
+          </section>
+
+          <aside class="hero-panel" aria-label="Ralph Loop at a glance">
+            <h2>Loop Pattern</h2>
+            <ol>
+              <li>Pick one task</li>
+              <li>Run the agent</li>
+              <li>Execute checks</li>
+              <li>Persist outcomes</li>
+              <li>Restart clean</li>
+            </ol>
+            <p>
+              Deterministic structure, adaptable outcomes. You turn model variability
+              into measurable engineering momentum.
+            </p>
+          </aside>
+        </div>
       </div>
     </header>
 
@@ -68,36 +96,45 @@
       <section id="what-is" class="panel reveal">
         <h2>What is Ralph Loop</h2>
         <p>
-          Ralph Loop is a lightweight orchestration pattern (often a shell loop) used to run
-          an AI coding agent repeatedly against a clear task list. Instead of keeping one
-          very long conversation, each iteration starts fresh and reads project state from
-          files, tests, and version control.
+          Ralph Loop is a lightweight orchestration pattern (often a shell loop) for repeatedly
+          running an AI coding agent against a clear task backlog. Instead of one giant session,
+          each run starts fresh and reads truth from files, tests, and git.
         </p>
         <p>
-          In simple terms:
-          <strong>attempt → check → record → restart</strong>. This keeps delivery grounded in
-          verifiable artifacts instead of fragile conversation memory.
+          In short: <strong>attempt → check → record → restart</strong>.
         </p>
       </section>
 
       <section id="philosophy" class="panel reveal">
         <h2>Core Philosophy</h2>
         <div class="cards-2">
-          <article class="mini-card">
-            <h3>Fresh context beats bloated context</h3>
-            <p>New runs avoid conversation fatigue and context rot.</p>
+          <article class="mini-card icon-card">
+            <span class="icon">⚡</span>
+            <div>
+              <h3>Fresh context beats bloated context</h3>
+              <p>New runs avoid drift, confusion, and context fatigue.</p>
+            </div>
           </article>
-          <article class="mini-card">
-            <h3>External memory wins</h3>
-            <p>Reliable state lives in files, tests, and git—not transient chat memory.</p>
+          <article class="mini-card icon-card">
+            <span class="icon">🧠</span>
+            <div>
+              <h3>External memory wins</h3>
+              <p>State lives in artifacts: docs, code, tests, and commits.</p>
+            </div>
           </article>
-          <article class="mini-card">
-            <h3>Small tasks compound</h3>
-            <p>One clear task per loop creates momentum and easier quality control.</p>
+          <article class="mini-card icon-card">
+            <span class="icon">🧩</span>
+            <div>
+              <h3>Small tasks compound</h3>
+              <p>Narrow tasks accelerate delivery and simplify reviews.</p>
+            </div>
           </article>
-          <article class="mini-card">
-            <h3>Feedback is non-negotiable</h3>
-            <p>Checks are the steering wheel that keeps loops productive.</p>
+          <article class="mini-card icon-card">
+            <span class="icon">✅</span>
+            <div>
+              <h3>Feedback is non-negotiable</h3>
+              <p>Checks are the steering wheel, not an afterthought.</p>
+            </div>
           </article>
         </div>
       </section>
@@ -109,43 +146,43 @@
             <span>01</span>
             <div>
               <h3>Pick one unfinished task</h3>
-              <p>Define the scope and done criteria before execution.</p>
+              <p>Define scope and done criteria before execution.</p>
             </div>
           </article>
           <article>
             <span>02</span>
             <div>
-              <h3>Run the agent on only that task</h3>
-              <p>Single-focus loops reduce cross-task confusion and drift.</p>
+              <h3>Run the agent on that task only</h3>
+              <p>Single-focus loops reduce drift and rework.</p>
             </div>
           </article>
           <article>
             <span>03</span>
             <div>
               <h3>Execute checks</h3>
-              <p>Run tests, lint, type-check, and any manual validation required.</p>
+              <p>Run tests, lint, type-check, and manual validation.</p>
             </div>
           </article>
           <article>
             <span>04</span>
             <div>
               <h3>Persist outcomes</h3>
-              <p>Commit code, update docs/task board, and capture lessons.</p>
+              <p>Commit code, update docs/tasks, capture lessons.</p>
             </div>
           </article>
           <article>
             <span>05</span>
             <div>
               <h3>Restart with fresh context</h3>
-              <p>The next pass inherits artifacts, not a bloated chat transcript.</p>
+              <p>The next pass inherits artifacts, not stale chat state.</p>
             </div>
           </article>
         </div>
 
         <div class="callout">
           <p>
-            Key idea: the loop is deterministic in structure, but adaptable in outcomes. It harnesses
-            non-deterministic model behavior through repeated, test-gated attempts.
+            The loop shape is fixed. The output quality evolves through repeated,
+            test-gated attempts.
           </p>
         </div>
       </section>
@@ -156,66 +193,53 @@
           <article class="example-card">
             <h3>Feature delivery</h3>
             <p>
-              Split “build user dashboard” into micro-tasks: API integration, cards,
-              loading/error states, accessibility, tests. Close each slice only after checks pass.
+              Break “build dashboard” into API integration, states, accessibility,
+              and tests. Ship each slice only after checks pass.
             </p>
           </article>
           <article class="example-card">
             <h3>Bug fixing</h3>
             <p>
-              Reproduce bug → write failing test → implement fix → run regression suite.
-              Failed checks become the next loop input.
+              Reproduce → failing test → fix → regression suite. Failed checks become
+              next-loop input.
             </p>
           </article>
           <article class="example-card">
-            <h3>Refactoring with guardrails</h3>
+            <h3>Safe refactoring</h3>
             <p>
-              Improve modules incrementally while preserving behavior via tests and snapshots.
-              Lower risk, higher consistency.
+              Improve internals in increments while preserving behavior via tests and
+              snapshots.
             </p>
           </article>
         </div>
       </section>
 
-      <section id="meta-comment" class="panel panel-meta reveal">
-        <h2>Meta Comment</h2>
-        <p>
-          Explaining Ralph Loop is slightly ironic: the concept argues for short, focused cycles,
-          while explanations can become broad and abstract. To stay faithful to the philosophy,
-          this page keeps the narrative practical and modular.
-        </p>
-        <p>
-          Even this explanation is loop-shaped: define the model, test with examples,
-          then refine toward implementation.
-        </p>
-      </section>
-
       <section id="my-thoughts" class="panel reveal">
-        <h2>My Thoughts & implementation guidance</h2>
+        <h2>Implementation guidance</h2>
         <p>
-          Ralph Loop is most useful when treated as engineering discipline, not a magic button.
-          It shines when quality gates are explicit and tasks are deliberately scoped.
+          Ralph Loop is engineering discipline, not a magic button. It works best
+          when quality gates are explicit and task scope stays tight.
         </p>
         <div class="implementation-grid">
           <article>
             <h3>1) Define a task ledger</h3>
-            <p>Keep one-line acceptance criteria for every task.</p>
+            <p>One-line acceptance criteria for every task.</p>
           </article>
           <article>
             <h3>2) Create quality gates</h3>
-            <p>Set mandatory tests/lint/type-check/build before closure.</p>
+            <p>Mandatory tests/lint/type-check/build before closure.</p>
           </article>
           <article>
-            <h3>3) Standardize project memory</h3>
-            <p>Maintain AGENTS.md-style conventions and recurring learnings.</p>
+            <h3>3) Standardize memory</h3>
+            <p>Use stable docs and conventions for recurring lessons.</p>
           </article>
           <article>
             <h3>4) Keep loops short</h3>
-            <p>Ten small loops beat one giant loop for debugging and review.</p>
+            <p>Ten short loops beat one giant debugging marathon.</p>
           </article>
           <article>
-            <h3>5) Add human review checkpoints</h3>
-            <p>Reconfirm architecture and product direction at key milestones.</p>
+            <h3>5) Add human checkpoints</h3>
+            <p>Reconfirm architecture and product direction regularly.</p>
           </article>
           <article>
             <h3>6) Measure outcomes</h3>
@@ -226,7 +250,7 @@
     </main>
 
     <footer class="container footer">
-      <p>Built as a fast, GitHub Pages-ready static site.</p>
+      <p>Built as a GitHub Pages-ready static site with dual visual variants.</p>
       <a href="#top" aria-label="Back to top">Back to top ↑</a>
     </footer>
 
@@ -240,6 +264,27 @@
         { threshold: 0.12 }
       );
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      const root = document.documentElement;
+      const buttons = document.querySelectorAll('[data-theme-btn]');
+      const stored = localStorage.getItem('ralph-theme');
+      if (stored) root.setAttribute('data-theme', stored);
+
+      const syncButtons = () => {
+        const current = root.getAttribute('data-theme');
+        buttons.forEach((btn) => btn.classList.toggle('active', btn.dataset.themeBtn === current));
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const theme = button.dataset.themeBtn;
+          root.setAttribute('data-theme', theme);
+          localStorage.setItem('ralph-theme', theme);
+          syncButtons();
+        });
+      });
+
+      syncButtons();
     </script>
   </body>
 </html>
